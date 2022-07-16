@@ -1,0 +1,28 @@
+public void minimumPlatfromReq(int arr[], int dep[])
+{
+	int minimumPlatneeded = 1, platformNeeded = 1;
+	int timeListLength = arr.length;  //The length of arrival and departure will be same.
+
+	Arrays.sort(arr);
+	Arrays.sort(dep);
+
+	int arrIndex = 1, depIndex = 0;
+
+	while(arrIndex < timeListLength && depIndex < timeListLength)
+	{
+		if(arrIndex <= depIndex)
+		{
+			platformNeeded++;
+			arrIndex++;
+		}
+		else if (arrIndex > depIndex)
+		{
+			platformNeeded--;
+			depIndex++;
+		}
+
+		minimumPlatformNeeded = Math.max(minimumPlatformNedded, platformNeeded);
+	}
+
+	return minimumPlatneeded;
+}
