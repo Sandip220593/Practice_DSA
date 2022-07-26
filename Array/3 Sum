@@ -1,0 +1,77 @@
+/*
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums
+[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] ==
+0.
+
+Notice that the solution set must not contain duplicate triplets.
+*/
+
+//Solution - 1 : Without using any extra space.
+/* After sorting the array elements, We will take one value and then check from low = i+1 to high = size-1*/
+
+public List<List<Integer>> findTriplets(int nums[])
+{
+	int length = nums.length;
+	List<List<Integer>> resultSet;
+	for(int index = 0;index < length - 2; index++)
+	{
+		int low = index + 1;
+		int high = length - 1;
+
+		if(i == 0 || (i > 0 && nums[index] != nums[i-1]))
+		{
+			while(low < high)
+			{
+				int sum = nums[index] + nums[low] + nums[high];
+				resultSet = new ArrayList<List<Integer>>();
+				if(sum == 0)
+				{
+					resultSet.add(Arrays.asList(nums[index], nums[low], nums[high]));
+					while(low < high && nums[low] == nums[low + 1]) low++;
+					while(low < high && nums[high] == nums[high - 1]) high--;
+					low++;
+					high--;
+				}
+				else if(sum < 0)
+					low++;
+				else
+					high--;
+			}
+		}
+		return resultSet;
+	}
+}
+
+
+
+
+//Solution - 2 : Using the Set to remove the duplicates.
+public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> triplet = new HashSet<List<Integer>>();
+        
+        int length = nums.length;
+        Arrays.sort(nums);
+        for(int i = 0; i< length-2; i++)
+        {
+            int low = i+1;
+            int high = length - 1;
+            
+            while(low < high)
+            {
+                
+                int sum = nums[i] + nums[low] + nums[high];
+                if(sum == 0){
+                    triplet.add(Arrays.asList(nums[i], nums[low], nums[high]));
+                    low++;
+                    high--;
+                }
+                else if(sum < 0)
+                    low++;
+                else
+                    high--;
+                
+            }
+        }
+        
+        return new ArrayList<List<Integer>>(triplet);
+    }
