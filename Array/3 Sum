@@ -13,6 +13,7 @@ public List<List<Integer>> findTriplets(int nums[])
 {
 	int length = nums.length;
 	List<List<Integer>> resultSet;
+	Arrays.sort(nums);
 	for(int index = 0;index < length - 2; index++)
 	{
 		int low = index + 1;
