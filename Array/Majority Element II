@@ -1,0 +1,71 @@
+/*
+Let us assume the size of the array is 'N'.
+So the number of elements present more than N/3 time will be two.
+
+Explanation : Let us assume that if an element present more than N/3 times then the number of occurrence of it will be (N/3) + 1
+
+So, for exapmle if two elements present more than (N/3) time then total number of elements in the array will be : (N/3+1) + (N/3 + 1) = 2N/3 + 2.
+
+Now say one more element is present (N/3 + 1) times.
+
+Now total number of elements present  = (2N/3 + 2) + (N/3 + 1) = (N + 1) which is greater than the size of the afrray and it is not possible.
+
+So at max 2 elements can present in the array for (N/3 + 1) time i.e more than (N/3) times.
+
+In this solution we are trying to find two candudates who are possibly the majority element using Moore's Voting Algorithm.
+*/
+public List<Integer> majorityElement(int[] nums) {
+        int length = nums.length;
+       // private static int MAX_FREQUENCY = Math.floor(length/3);
+        
+        List<Integer> resultList = new ArrayList<Integer>();
+        int number1 = -1; 
+        int number2 = -1;
+        int count1 = 0;
+        int count2 = 0;
+        
+        for(int index = 0; index < length; index++)
+        {
+            if(nums[index] == number1)
+            {
+                count1++;
+            }
+            else if(nums[index] == number2)
+            {
+                count2++;
+            }
+            else if(count1 == 0)
+            {
+                number1 = nums[index];
+                count1 = 1;
+            }
+            else if(count2 == 0)
+            {
+                number2 = nums[index];
+                count2 = 1;
+            }
+            else
+            {
+                count1--;
+                count2--;
+            }
+        }
+        count1 = 0;
+        count2 = 0;
+        for(int index = 0; index < length; index++)
+        {
+            if(nums[index] == number1)
+                count1++;
+            else if (nums[index] == number2)
+                count2++;
+            
+             
+        }
+        if(count1 > length/3)
+            resultList.add(number1);
+        if(count2 > length/3)
+            resultList.add(number2);
+        return resultList;
+        
+       
+    }
