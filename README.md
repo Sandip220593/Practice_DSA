@@ -4,3 +4,4 @@
   2. Minimum Platform Required for trains (https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1)
   3. Majority Element I (https://leetcode.com/problems/majority-element/)
   4. Move Zeros (https://leetcode.com/problems/move-zeroes/)
+  5. Majority Element II (https://leetcode.com/problems/majority-element-ii/)
