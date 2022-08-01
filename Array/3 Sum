@@ -19,7 +19,7 @@ public List<List<Integer>> findTriplets(int nums[])
 		int low = index + 1;
 		int high = length - 1;
 
-		if(i == 0 || (i > 0 && nums[index] != nums[i-1]))
+		if(index == 0 || (index > 0 && nums[index] != nums[index-1]))
 		{
 			while(low < high)
 			{
