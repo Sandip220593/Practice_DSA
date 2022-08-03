@@ -2,18 +2,18 @@ public void moveZeros(int[] nums){
 	int length = nums.length;
 
 	int current = 0;
-        int index = 0;
-        while(index < length)
+    int index = 0;
+    while(index < length)
+    {
+        if(length == 0)
+            return;
+        if(nums[index]!=0)
         {
-            if(length == 0)
-                return;
-            if(nums[index]!=0)
-            {
-                int temp = nums[current];
-                nums[current++] = nums[index];
-                nums[index] = temp;
-            }
-            index++;
+            int temp = nums[current];
+            nums[current++] = nums[index];
+            nums[index] = temp;
         }
+        index++;
+    }
         
 }
