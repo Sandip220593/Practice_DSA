@@ -1,0 +1,63 @@
+/*
+Solution 1 : Time : O(N)
+             Sapce : O(N)
+*/
+public int trap(int[] height) {
+        int length = height.length;
+        int right[] = new int[length];
+        int left[] = new int[length];
+        
+        int trappedWater = 0;
+        
+        left[0] = height[0];
+        for(int index = 1; index < length; index++)
+        {
+            left[index] = Math.max(height[index], left[index-1]);
+        }
+        
+        right[length - 1] = height[length - 1];
+        for(int index = length - 2; index >= 0; index--)
+        {
+            right[index] = Math.max(height[index], right[index+1]);
+        }
+        
+        for(int index = 0; index < length; index++)
+        {
+            trappedWater += Math.min(left[index], right[index]) - height[index];    
+        }
+        
+        return trappedWater;
+    }
+
+/**************************************************************************************/
+
+/*
+Solution 2 : Time : O(N)
+             Space : O(1)
+*/
+public int trap(int[] height) {
+        int length = height.length;
+        int left = 0, right = length-1;
+        int leftMax = height[0], rightMax = height[length-1];
+        int trappedWater = 0;
+        
+        while(left < right)
+        {
+            leftMax = (height[left] > leftMax) ? height[left] : leftMax;
+            rightMax = (height[right] > rightMax) ? height[right] : rightMax;
+            
+            if(leftMax < rightMax)
+            {
+                trappedWater += Math.min(leftMax, rightMax) - height[left];
+                left++;
+            }
+            else
+            {
+                trappedWater += Math.min(leftMax, rightMax) - height[right];
+                right--;
+            }
+        }
+        
+        return trappedWater;
+    }
+
